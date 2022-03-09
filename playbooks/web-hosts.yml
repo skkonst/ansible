@@ -35,11 +35,12 @@
         dest: "/etc/nginx/sites-enabled/default"
         state: link
       notify: restart nginx
+
     - name: "copy index"
       template:
         src: "templates/index.html.j2"
         dest: "/usr/share/nginx/html/index.html"
-      mode: "0644"
+        mode: "0644"
     - name: restart nginx
       service:
         name: nginx
