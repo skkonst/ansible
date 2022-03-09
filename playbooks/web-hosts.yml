@@ -18,7 +18,6 @@
         src: files/nginx.key
         dest: "{{ key_file }}"
         owner: root 
-        mоdе: "0600"
       notify: restart nginx
     - name: copy tls cert
       ansible.builtin.copy: 
