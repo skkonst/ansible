@@ -11,7 +11,7 @@
     - name: install nginx
       apt: name=nginx update_cache=yes
 
-    - nаме: create directories for ssl certificates
+    - nаmе: create directories for ssl certificates
       file: path=/etc/nginx/ssl state=directory
 
     - nаме: сору TLS key
