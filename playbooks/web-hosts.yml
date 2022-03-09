@@ -1,9 +1,9 @@
 - hosts: "testserver"
   vars:
-    key_file: "/etc/nginx/ssl/nginx.key"
-    cert_file: "/etc/nginx/ssl/nginx.crt"
-    conf_file: "/etc/nginx/sites-available/default"
-    servername: "192.168.88.39"
+    key_file: /etc/nginx/ssl/nginx.key
+    cert_file: /etc/nginx/ssl/nginx.crt
+    conf_file: /etc/nginx/sites-available/default
+    server_name: "192.168.88.39"
   tasks:
     - name: install nginx
       apt: name=nginx update_cache=yes
