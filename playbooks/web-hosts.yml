@@ -18,15 +18,23 @@
          mode: '0755'
 
     - nаmе: сору TLS key
-      сору: src=files/nginx.key dest={{ key_file }} owner=root оdе=0600
+      ansible.builtin.copy:
+        src: files/nginx.key
+        dest: {{ key_file }}
+        owner: root 
+        mоdе: 0600
       notify: restart nginx
 
     - nаmе: сору TLS certificate
-      сору: src=files/nginx.crt dest={{ cert_file }}
+      ansible.builtin.copy: 
+        src: files/nginx.crt
+        dest: {{ cert_file }}
       notify: restart nginx
 
     - name: copy nginx config file
-      copy: src=templates/nginx.conf.j2 dest={{ conf_file }}
+      ansible.builtin.copy:
+        src: templates/nginx.conf.j2
+        dest: {{ conf_file }}
 
     - name: enable configuration
       file: >
