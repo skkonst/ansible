@@ -17,11 +17,11 @@
          state: directory
          mode: '0755'
 
-    - nаме: сору TLS key
-      сору: src=files/nginx.key dest={{ key_file }} owner=root моdе=0600
+    - nае: сору TLS key
+      сору: src=files/nginx.key dest={{ key_file }} owner=root оdе=0600
       notify: restart nginx
 
-    - nаме: сору TLS certificate
+    - nае: сору TLS certificate
       сору: src=files/nginx.crt dest={{ cert_file }}
       notify: restart nginx
 
