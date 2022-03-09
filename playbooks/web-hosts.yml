@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: testserver
   tasks:
     - name: install nginx
       apt: name=nginx update_cache=yes
