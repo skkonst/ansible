@@ -1,17 +1,36 @@
 ---
 - hosts: testserver
+  become: True
+  vars:
+    key_file: /etc/nginx/ssl/nginx.key
+    cert_file: /etc/nginx/ssl/nginx.crt
+    conf_file: /etc/nginx/sites-available/default
+    servername: 192.168.88.39
+
   tasks:
     - name: install nginx
       apt: name=nginx update_cache=yes
 
+    - nаме: create directories for ssl certificates
+      file: path=/etc/nginx/ssl state=directory
+
+    - nаме: сору TLS key
+      сору: src=files/nginx.key dest={{ key_file }} owner=root моdе=0600
+      notify: restart nginx
+
+    - nаме: сору TLS certificate
+      сору: src=files/nginx.crt dest={{ cert_file }}
+      notify: restart nginx
+
     - name: copy nginx config file
-      copy: src=files/nginx.conf dest=/etc/nginx/sites-available/default
+      copy: src=templates/nginx.conf.j2 dest={{ conf_file }}
 
     - name: enable configuration
       file: >
         dest=/etc/nginx/sites-enabled/default
-        src=/etc/nginx/sites-available/default
+        src={{ conf_file }}
         state=link
+      notify: restart nginx
 
     - name: copy index.html
       template: src=templates/index.html.j2 dest=/usr/share/nginx/html/index.html
