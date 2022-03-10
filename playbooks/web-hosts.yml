@@ -20,7 +20,7 @@
         dest: "{{ cert_file }}"
       notify: restart nginx
     - name: copy nginx config file
-      ansible.builtin.copy:
+      template:
         src: templates/nginx.conf.j2
         dest: "{{ conf_file }}"
     - name: enable configuration
